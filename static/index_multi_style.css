@@ -1,0 +1,189 @@
+select {
+    float: true;
+    height: 40px;
+    width: 250px;
+    flex: 1 0 100px;
+    padding-left: 10px;
+    font-size: 14px;
+    border-radius: 20px;
+}
+label,th,td {
+    font-size: 14px;
+}
+
+/*input[type=button],input[type=submit]{
+    font-size: 16px;
+    background: orange;
+    color: white;
+    border-radius: 20px;
+    border: 0px;
+}*/
+input[type=button],input[type=submit]{
+    font-size: 12px;
+}
+#perform-operation{
+
+}
+
+p{
+    font-size:12px;
+}
+#data_type{
+    width: 250px;
+    padding-left:1px;
+    height: 30px;
+}
+
+.delete-button{
+    cursor: pointer;
+}
+
+#table-div, #column-block, #new-column-block, #delete-column-block,
+#column-table, #verify, #operation-div,#perform-operation, #validate-operation, .loader{
+    display:none;
+}
+
+#validate-operation{
+   margin: 0 auto;
+}
+
+.critical-issue{
+        background-color: #ffdddd!important;
+}
+
+.loader{
+    position:fixed;
+    top: 50%;
+    left: 50%;
+    pointer-events:none;
+    width:50px;
+    height:50px;
+    border-radius:50%;
+    border: 6px solid transparent;
+    border-top-color: orange;
+    animation:an1 1s ease infinite;
+}
+@keyframes an1{
+    0% {
+        transform: rotate(0turn);
+    }
+    100%{
+        transform: rotate(1turn);
+    }
+}
+
+#result-popup{
+    position: absolute;
+    width:auto;
+    overflow:false;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 34 px;
+    background-color: #FEE8D6;
+    padding: 14px;
+    padding-bottom:50px;
+    /*border: 0.5px solid orange;*/
+    border-radius: 10px;
+    transition: visibility 2s, opacity 0.5s linear;
+}
+
+.page-post{
+    display:block;
+}
+.row-post{
+    opacity:0.5;
+    pointer-events:none;
+}
+
+.page-get{
+    display:none;
+    pointer-events:none;
+}
+
+tbody select{
+    height:30px;
+    width: auto;
+    /*margin-bottom:10px;*/
+}
+
+.left-content {
+  border-right: 1px dashed #333;
+}
+
+div .close-button{
+    margin: 0 auto;
+    margin-top: 20px;
+    display:block;
+    height: auto;
+    width: 150px;
+    border-radius: 5px;
+    font-size:16px;
+}
+
+
+/*Modal*/
+.modal-confirm {
+	color: #636363;
+	width: 325px;
+	font-size: 14px;
+}
+.modal-confirm .modal-content {
+	padding: 20px;
+	border-radius: 5px;
+	border: none;
+}
+.modal-confirm .modal-header {
+	border-bottom: none;
+	position: relative;
+}
+.modal-confirm h4 {
+	text-align: center;
+	font-size: 26px;
+	margin: 30px 0 -15px;
+}
+.modal-confirm .form-control, .modal-confirm .btn {
+	min-height: 40px;
+	border-radius: 3px;
+}
+
+.modal-confirm .icon-box {
+	color: #fff;
+	position: absolute;
+	margin: 0 auto;
+	left: 0;
+	right: 0;
+	top: -70px;
+	width: 95px;
+	height: 95px;
+	border-radius: 50%;
+	z-index: 9;
+	background: #82ce34;
+	padding: 15px;
+	text-align: center;
+	box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+}
+.modal-confirm .icon-box i {
+	font-size: 58px;
+	position: relative;
+	top: 3px;
+}
+.modal-confirm.modal-dialog {
+	margin-top: 80px;
+}
+.modal-confirm .btn {
+	color: #fff;
+	border-radius: 4px;
+	background: #82ce34;
+	text-decoration: none;
+	transition: all 0.4s;
+	line-height: normal;
+	border: none;
+}
+
+#dml-copied{
+    float: right;
+    cursor: pointer;
+    font-size: 12px;
+    border: dashed;
+}
