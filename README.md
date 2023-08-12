@@ -29,5 +29,5 @@ ___
 ```python
 python server.py
 ```
-5. You would see your app is running on localhost://8000/
+5. You would see your app is running on ```localhost://8000/```
    
