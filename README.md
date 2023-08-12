@@ -1,9 +1,14 @@
-# FLASK DDL CHANGE OPERATION
-----
+FLASK DDL CHANGE OPERATION
+---
 
-Welcome to my Flask DDL Change Operation Repository. 
-This is so unique yet helpful for any project to touch the database without changing the database by the Admin Team.
+```Author: TUHIN MAJUMDER```<br>
+```Last Update: Aug 2023```
+---
 
+<h5> Welcome to my Flask DDL Change Operation Repository. 
+This is so unique yet helpful for any project to touch the database without changing the database by the Admin Team.</h5>
+
+![img.png](static/img/intro1.png)
 ___
 
 ###  Few Features on this Project:
@@ -15,6 +20,7 @@ ___
 - [x] A lightning fast and so interactive with no compromise on User Experience
 - [x] Ready to handle billions of request
 
+---
 ### Steps to Implement on your Local
 
 1. Install and Connect DB
@@ -26,8 +32,11 @@ ___
    ```
 3. Change the Database credentials that you've already retrieved in ```rft_to_ui.py``` file and basic auth credentials in ```server.py```
 4. now Deploy the app to your local with this command in your terminal
-```python
-python server.py
-```
-5. You would see your app is running on ```localhost://8000/```
-   
+   ```python
+   python server.py
+   ```
+5. You will see your app is running on [http://localhost:8000/operation](http://localhost:8000/operation)
+
+   ![img.png](static/img/output1.png)
+
+---
