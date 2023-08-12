@@ -3,8 +3,9 @@ from flask_wtf import FlaskForm
 from wtforms import SelectField, StringField, IntegerField, SelectMultipleField
 import rft_to_ui
 from flask_httpauth import HTTPBasicAuth
-
+# from flask_ngrok import run_with_ngrok
 app = Flask(__name__)
+# run_with_ngrok(app)
 app.config['SECRET_KEY'] = '42'
 auth = HTTPBasicAuth()
 
@@ -127,4 +128,5 @@ def Interface_Error(error):
 # return render_template('error_handle/404.html', title = '404'), 404
 
 if __name__ == '__main__':
-    app.run(host='127.0.0.1', port=8000, debug=True)
+    # app.run(host='127.0.0.1', port=8000, debug=True)
+    app.run(debug=True,host='0.0.0.0', port=8000)

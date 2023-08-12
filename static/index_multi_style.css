@@ -10,6 +10,9 @@ select {
 label,th,td {
     font-size: 14px;
 }
+.nocursor {
+  cursor: none;
+}
 
 /*input[type=button],input[type=submit]{
     font-size: 16px;
@@ -74,7 +77,8 @@ p{
 
 #result-popup{
     position: absolute;
-    width:auto;
+    width:700px;
+    height:400px;
     overflow:false;
     top: 50%;
     left: 50%;
