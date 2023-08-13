@@ -3,9 +3,9 @@ from flask_wtf import FlaskForm
 from wtforms import SelectField, StringField, IntegerField, SelectMultipleField
 import rft_to_ui
 from flask_httpauth import HTTPBasicAuth
-# from flask_ngrok import run_with_ngrok
+from flask_ngrok import run_with_ngrok
 app = Flask(__name__)
-# run_with_ngrok(app)
+run_with_ngrok(app)
 app.config['SECRET_KEY'] = '42'
 auth = HTTPBasicAuth()
 
@@ -48,8 +48,9 @@ def operation():
         #     fetch_column_detail = rft_to_ui.fetch_column_details(form.table_schema.data, form.table_name.data, form.column_name.data)
         return_dict = request.form['return_dict']
         try:
-            rft_to_ui.perform_operation(return_dict)
-            result = 'OK'
+            result = rft_to_ui.validate_operation(return_dict, 1)
+            print('result is: ', result)
+            # result = 'OK'
         except:
             result = ''
         # return render_template('index_multi.html', query_string=Markup(result), form=Form(), method='post')
@@ -63,7 +64,7 @@ def validate_data():
     if request.method == 'POST':
         return_val = (request.get_json())['return_dict_validate']
         print(return_val)
-        result_val = rft_to_ui.perform_operation(return_val)
+        result_val = rft_to_ui.validate_operation(return_val, 0)
         return result_val
     return 'it is working as Get Request'
 
@@ -129,4 +130,5 @@ def Interface_Error(error):
 
 if __name__ == '__main__':
     # app.run(host='127.0.0.1', port=8000, debug=True)
-    app.run(debug=True,host='0.0.0.0', port=8000)
+    # app.run(host='0.0.0.0', port=8000)
+    app.run()

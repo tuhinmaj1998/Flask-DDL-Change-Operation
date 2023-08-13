@@ -300,7 +300,7 @@ def validate_columnname(schema, table, columnname, verify_dict, key, issue_dict,
 #     print('')
 
 
-def perform_operation(perform_dict_):
+def validate_operation(perform_dict_, perform_flag):
     import time
     # time.sleep(3)
     query_list = []
@@ -365,7 +365,7 @@ def perform_operation(perform_dict_):
 
             elif operation == 'add':
                 query_header = f'''Add New Column Operation: "{schema}"."{table}"."{columnname}" ({lastchangedatatype})'''
-                query_command1 = f'''ALTER TABLE "{schema}"."{table}" ADD COLUMN "{columnname}" {datatype};'''
+                query_command1 = f'''ALTER TABLE "{schema}"."{table}" ADD COLUMN "{columnname}" {lastchangedatatype};'''
 
                 query_list.append(query_command1)
                 qlist_to_text = qlist_to_text + '<br><b>' + query_header + '</b>'
@@ -382,10 +382,18 @@ def perform_operation(perform_dict_):
             else:
                 print('Something went wrong!')
 
-        # for i in query_list:
-        #     qlist_to_text = qlist_to_text + i + '<br>'
-        # qlist_to_text = 'Query List is:<br><br>'+ qlist_to_text
-        print(qlist_to_text.replace('<br>', '\n').replace('<b>', '').replace('</b>', ''))
-        return qlist_to_text
+
+
+        if len(query_list) > 0 and perform_flag == 1:
+            conn = create_conn()
+            cursor = conn.cursor()
+            for ql in query_list:
+                cursor.execute(ql)
+                conn.commit()
+            conn.close()
+            return 'OK'
+        else:
+            print(qlist_to_text.replace('<br>', '\n').replace('<b>', '').replace('</b>', ''))
+            return qlist_to_text
     else:
         return 'Something went wrong in this below operation! Kindly check!<br>' + perform_dict_
