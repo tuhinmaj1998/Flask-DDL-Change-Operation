@@ -1,13 +1,15 @@
 FLASK DDL CHANGE OPERATION
----
+-
 
 ```Author: TUHIN MAJUMDER```<br>
 ```Last Update: Aug 2023```
 
 ---
 
-<h5> Welcome to my Flask DDL Change Operation Repository. 
-This is so unique yet helpful for any project to touch the database without changing the database by the Admin Team.</h5>
+[Select Operation](/operation)
+
+<h3> Welcome to my Flask DDL Change Operation Repository. 
+This is so unique yet helpful for any project to touch the database without changing the database by the Admin Team.</h3>
 
 ![img.png](static/img/intro1.png)
 ___
@@ -25,14 +27,14 @@ ___
 ### Steps to Implement on your Local
 
 1. Install and Connect DB
-   1. If you're using PostgreSQL, install PostGreSQL and PGAdmin(Optional) and Collect the credentials
-   2. If you're planning to use MsSQL, install SQL Server and Workbench (Optional) and collect the credentials
-2. Assuming you've already installed ```Python``` on your machine, open the any IDE (read Pycharm Community Edition), and in its terminal run 
+   <br>i. If you're using PostgreSQL, install PostGreSQL and PGAdmin(Optional) and Collect the credentials
+   <br>ii. If you're planning to use MsSQL, install SQL Server and Workbench (Optional) and collect the credentials
+2. Assuming you've already installed ```Python``` on your machine, open any IDE (read Pycharm Community Edition), and in its terminal run<br> 
    ```python
    pip install -r requirements.txt
    ```
 3. Change the Database credentials that you've already retrieved in ```rft_to_ui.py``` file and basic auth credentials in ```server.py```
-4. now Deploy the app to your local with this command in your terminal
+4. now Deploy the app to your local with this command in your terminal<br>
    ```python
    python server.py
    ```

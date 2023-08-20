@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta charset="utf-8">
+    <meta name="author" content="Tuhin Majumder">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="github-markdown.css">
+<style>
+	.markdown-body {
+		box-sizing: border-box;
+		min-width: 200px;
+		max-width: 980px;
+		margin: 0 auto;
+		padding: 45px;
+	}
+
+.theme-b {
+  background: #2a2a2a;
+  color: #bbd;
+}
+@media (prefers-color-scheme: light) {
+  .theme-b.adaptive {
+    background: #bcd;
+    color: #334;
+    outline: 5px dotted #000;
+  }
+}
+
+ a{
+    color:yellow;
+ }
+</style>
+
+</head>
+<body class="markdown-body theme-b adaptive">
+
+
+<div id="container" class="container">
+    <div id="row" class="row">
+        {% if MDContent is not none %}
+        {{ MDContent | safe }}
+        {% else %}
+        <H2>index.md file is missing from the md folder.</H2>
+        {% endif %}
+    </div>
+</div>
+
+</body>
+</html>

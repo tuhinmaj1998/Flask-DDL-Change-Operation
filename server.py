@@ -4,26 +4,27 @@ from wtforms import SelectField, StringField, IntegerField, SelectMultipleField
 import rft_to_ui
 from flask_httpauth import HTTPBasicAuth
 from flask_ngrok import run_with_ngrok
+import markdown
+import cred
+
 app = Flask(__name__)
-run_with_ngrok(app)
-app.config['SECRET_KEY'] = '42'
+# run_with_ngrok(app)
+# app.config['SECRET_KEY'] = 'ab01'
+
+app.config['SECRET_KEY'] = cred.secret_key
 auth = HTTPBasicAuth()
 
-# app.config['MYSQL_HOST'] = 'localhost'
-# app.config['MYSQL_USER'] = 'root'
-# app.config['MYSQL_PASSWORD'] = 'Solidstate1622'
-# app.config['MYSQL_DB'] = 'temp'
-
-# conn = MySQL(app)
+our_cred = cred.our_cred
 
 
-our_cred = {'admin':'1234','tuhin':'abcd'}
+# our_cred = {'u1':'pass1','u2':'pass2'}
 
 @auth.verify_password
 def verify(username, password):
     if not (username and password):
         return False
     return our_cred.get(username) == password
+
 
 class Form(FlaskForm):
     table_schema = SelectField(u'Schema', choices=rft_to_ui.fetch_all_schema())
@@ -36,9 +37,16 @@ class Form(FlaskForm):
 
     # return make_response('could not verify', 401, {'www-Autheticate': 'Basic Realm="login Required"'})
 
+
 @app.route('/', methods=['POST', 'GET'])
 def index():
-    return 'Helllllo!!!'
+    try:
+        with open('Readme.md') as mdfile:
+            MDContent = markdown.markdown(mdfile.read())
+    except:
+        MDContent = None
+    return render_template('home_index.html', MDContent=MDContent)
+
 
 @app.route('/operation', methods=['POST', 'GET'])
 @auth.login_required
@@ -56,7 +64,8 @@ def operation():
         # return render_template('index_multi.html', query_string=Markup(result), form=Form(), method='post')
         return render_template('index_multi.html', performation_response=result, form=Form(), method='get')
         # return result
-    return render_template('index_multi.html', performation_response='',form=form, method='get')
+    return render_template('index_multi.html', performation_response='', form=form, method='get')
+
 
 @app.route('/validate', methods=['POST', 'GET'])
 @auth.login_required
@@ -67,6 +76,7 @@ def validate_data():
         result_val = rft_to_ui.validate_operation(return_val, 0)
         return result_val
     return 'it is working as Get Request'
+
 
 @app.route('/<table_schema>/table_name')
 @auth.login_required
@@ -129,6 +139,6 @@ def Interface_Error(error):
 # return render_template('error_handle/404.html', title = '404'), 404
 
 if __name__ == '__main__':
-    # app.run(host='127.0.0.1', port=8000, debug=True)
+    app.run(host='127.0.0.1', port=8000, debug=True)
     # app.run(host='0.0.0.0', port=8000)
-    app.run()
+    # app.run()

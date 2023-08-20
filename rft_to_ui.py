@@ -2,16 +2,16 @@ import pandas as pd
 import psycopg2
 import pandas.io.sql as psql
 inf_schema_details_table = 'information_schema.columns'
+import cred
 
-
-def create_conn():
-    conn = psycopg2.connect(host="localhost",
-                                   user="tuhinmajumder",
-                                   password="162216",
-                                   port = 5432,
-                                   dbname="tuhinmajumder")
-
-    return conn
+# def create_conn():
+#     conn = psycopg2.connect(host="localhost",
+#                                    user="",
+#                                    password="",
+#                                    port = 0000,
+#                                    dbname="")
+#
+#     return conn
 
 
 def fetchdata_from_redshift(schema, tablename):
@@ -38,7 +38,7 @@ def fetchdata_from_redshift(schema, tablename):
 
 
 def fetch_all_schema():
-    conn = create_conn()
+    conn = cred.create_conn()
     query_string = f"""
     select distinct table_schema 
     from {inf_schema_details_table}
@@ -63,7 +63,7 @@ def fetch_all_schema():
 # fetch_all_schema()
 
 def fetch_tablenames(schema):
-    conn = create_conn()
+    conn = cred.create_conn()
     query_string = f"""
     select distinct table_name
     from {inf_schema_details_table} 
@@ -88,7 +88,7 @@ def fetch_tablenames(schema):
 
 
 def fetch_tablename_dict(schema):
-    conn = create_conn()
+    conn = cred.create_conn()
     query_string = f"""
     select distinct table_name
     from {inf_schema_details_table} 
@@ -113,7 +113,7 @@ def fetch_tablename_dict(schema):
 
 
 def fetch_columnnames(schema, tablename):
-    conn = create_conn()
+    conn = cred.create_conn()
     query_string = f"""
     select distinct column_name
     from {inf_schema_details_table} 
@@ -135,7 +135,7 @@ def fetch_columnnames(schema, tablename):
 
 
 def fetch_columnname_dict(schema, tablename):
-    conn = create_conn()
+    conn = cred.create_conn()
     query_string = f"""
     select distinct column_name
     from {inf_schema_details_table} 
@@ -174,7 +174,7 @@ def fetch_column_details(schema, tablename, columnname):
     from {inf_schema_details_table} 
     where table_schema = '{schema}' and table_name='{tablename}' and column_name='{columnname}';"""
     print(query_string)
-    conn = create_conn()
+    conn = cred.create_conn()
     cursor = conn.cursor()
     # cursor.execute(query_string)
     results = psql.read_sql(query_string, conn)
@@ -265,7 +265,7 @@ def validate_columnname(schema, table, columnname, verify_dict, key, issue_dict,
         issue_dict[key] = issue_message
         issue_count = issue_count + 1
     else:
-        conn = create_conn()
+        conn = cred.create_conn()
         query_string = f"""select count(*) from {inf_schema_details_table} 
                                             where table_schema = '{schema}' and table_name='{table}' and column_name='{columnname}'"""
         # print(query_string)
@@ -385,7 +385,7 @@ def validate_operation(perform_dict_, perform_flag):
 
 
         if len(query_list) > 0 and perform_flag == 1:
-            conn = create_conn()
+            conn = cred.create_conn()
             cursor = conn.cursor()
             for ql in query_list:
                 cursor.execute(ql)
